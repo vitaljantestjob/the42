@@ -2,17 +2,26 @@ $bgc : white;
 $border_color: #eae9e9;
 $border_width: 2px;
 $button_color: #00f6be;
+$button_shade: #000;
 $border_active_img: #937cff;
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-.product {
+@font-face {
+  font-family: 'oswaldregular';
+  src: url('../fonts/oswald-variablefont_wght-webfont.woff2') format('woff2'),
+       url('../fonts/oswald-variablefont_wght-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.main {
   * {
     display: flex;
   }
-  font-family: sans-serif;
+  font-family: oswaldregular;
   width: 75%;
   height: 450px;
   margin: auto;
@@ -23,7 +32,6 @@ $border_active_img: #937cff;
     min-width: 30rem;
     flex-direction: column;
     justify-content: space-between;
-    // *{border: 1px solid red;}
     img {
       width: 100%;
       object-fit: contain;
@@ -79,5 +87,97 @@ $border_active_img: #937cff;
   }
   .right {
     width: 40%;
+    margin-left: 10px;
+    text-transform: uppercase;
+    font-weight: bold;
+    flex-direction: column;
+    align-items: space-between;
+    justify-content: space-between;
+    .variation {
+      height: 15%;
+      flex-direction: column;
+      .product {
+        width: 100%;
+        justify-content: space-between;
+        border-bottom: 2px solid black;
+        span {
+          display: inline-block;
+        }
+        .price {
+          span{
+            margin: 0 5px;
+            &:before {
+              content: "$";
+            }
+            &.newprice {
+              color: #f00;
+            }
+            &.oldprice {
+              text-decoration-line: line-through;
+              text-decoration-color: #f00;
+            }
+          }
+        }
+      }
+      .images {
+        height: 50%;
+        .color-img {
+          width: 14%;
+          height: 100%;
+          border: 2px solid $border_color;
+          margin-right: 5px;
+          overflow: hidden;
+          background-size: cover;
+          background-repeat: no-repeat;
+          cursor: pointer;
+          &:hover {
+            border: 2px solid $button_color;
+          }
+          &.active {
+            border: 2px solid $border_active_img;
+          }
+          &.blue {
+            background-image: url(../img/blue0.png);
+          }
+          &.green {
+            background-image: url(../img/green0.png);
+          }
+          &.brown {
+            background-image: url(../img/brown0.png);
+          }
+          &.sale {
+            position: relative;
+            &:before {
+              display: inline-block;
+              content: 'SALE';
+              background-color: #f00;
+              color: #fff;
+              padding: 2px;
+              height: .5rem;
+              font-size: .4rem;
+              position: absolute;
+              top: 0;
+              right: 0;
+            }
+          }
+        }
+      }
+    }
+    .btn {
+      height: 15%;
+      font-size: 0.9rem;
+      justify-content: center;
+      align-items: center;
+      background-color: $button_color;
+      box-shadow: 5px 5px 0 0 $button_shade;
+      color: $button_shade;
+      cursor: pointer;
+      &.inversion {
+        background-color: $button_shade;
+        box-shadow: 5px 5px 0 0 $button_color;
+        color: $button_color;
+      }
+    }
   }
 }
+

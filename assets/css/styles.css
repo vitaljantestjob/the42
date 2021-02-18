@@ -5,8 +5,15 @@
           box-sizing: border-box;
 }
 
-.product {
-  font-family: sans-serif;
+@font-face {
+  font-family: 'oswaldregular';
+  src: url("../fonts/oswald-variablefont_wght-webfont.woff2") format("woff2"), url("../fonts/oswald-variablefont_wght-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.main {
+  font-family: oswaldregular;
   width: 75%;
   height: 450px;
   margin: auto;
@@ -16,13 +23,13 @@
   display: flex;
 }
 
-.product * {
+.main * {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
 }
 
-.product .left {
+.main .left {
   width: 60%;
   min-width: 30rem;
   -webkit-box-orient: vertical;
@@ -34,23 +41,23 @@
           justify-content: space-between;
 }
 
-.product .left img {
+.main .left img {
   width: 100%;
   -o-object-fit: contain;
      object-fit: contain;
 }
 
-.product .left .pictures {
+.main .left .pictures {
   height: 75%;
 }
 
-.product .left .pictures .main-img {
+.main .left .pictures .main-img {
   width: 70%;
   margin-left: 5px;
   border: 2px solid #eae9e9;
 }
 
-.product .left .pictures .more-img {
+.main .left .pictures .more-img {
   width: 30%;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
@@ -61,27 +68,27 @@
           justify-content: space-between;
 }
 
-.product .left .pictures .more-img .more-img-item {
+.main .left .pictures .more-img .more-img-item {
   width: 100%;
   height: 30%;
   border: 2px solid #eae9e9;
 }
 
-.product .left .pictures .more-img .more-img-item:hover {
+.main .left .pictures .more-img .more-img-item:hover {
   border-color: #00f6be;
   cursor: pointer;
 }
 
-.product .left .pictures .more-img .more-img-item.active {
+.main .left .pictures .more-img .more-img-item.active {
   border-color: #937cff;
 }
 
-.product .left .props {
+.main .left .props {
   width: 100%;
   height: 20%;
 }
 
-.product .left .props .props-item {
+.main .left .props .props-item {
   width: 6rem;
   height: 6rem;
   min-width: 6rem;
@@ -94,7 +101,7 @@
   text-align: center;
 }
 
-.product .left .props .props-item h2 {
+.main .left .props .props-item h2 {
   display: block;
   font-size: 0.8rem;
   text-transform: uppercase;
@@ -102,7 +109,134 @@
   width: 100%;
 }
 
-.product .right {
+.main .right {
   width: 40%;
+  margin-left: 10px;
+  text-transform: uppercase;
+  font-weight: bold;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: space-between;
+      -ms-flex-align: space-between;
+          align-items: space-between;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.main .right .variation {
+  height: 15%;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.main .right .variation .product {
+  width: 100%;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  border-bottom: 2px solid black;
+}
+
+.main .right .variation .product span {
+  display: inline-block;
+}
+
+.main .right .variation .product .price span {
+  margin: 0 5px;
+}
+
+.main .right .variation .product .price span:before {
+  content: "$";
+}
+
+.main .right .variation .product .price span.newprice {
+  color: #f00;
+}
+
+.main .right .variation .product .price span.oldprice {
+  -webkit-text-decoration-line: line-through;
+          text-decoration-line: line-through;
+  -webkit-text-decoration-color: #f00;
+          text-decoration-color: #f00;
+}
+
+.main .right .variation .images {
+  height: 50%;
+}
+
+.main .right .variation .images .color-img {
+  width: 14%;
+  height: 100%;
+  border: 2px solid #eae9e9;
+  margin-right: 5px;
+  overflow: hidden;
+  background-size: cover;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+
+.main .right .variation .images .color-img:hover {
+  border: 2px solid #00f6be;
+}
+
+.main .right .variation .images .color-img.active {
+  border: 2px solid #937cff;
+}
+
+.main .right .variation .images .color-img.blue {
+  background-image: url(../img/blue0.png);
+}
+
+.main .right .variation .images .color-img.green {
+  background-image: url(../img/green0.png);
+}
+
+.main .right .variation .images .color-img.brown {
+  background-image: url(../img/brown0.png);
+}
+
+.main .right .variation .images .color-img.sale {
+  position: relative;
+}
+
+.main .right .variation .images .color-img.sale:before {
+  display: inline-block;
+  content: 'SALE';
+  background-color: #f00;
+  color: #fff;
+  padding: 2px;
+  height: .5rem;
+  font-size: .4rem;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.main .right .btn {
+  height: 15%;
+  font-size: 0.9rem;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: #00f6be;
+  -webkit-box-shadow: 5px 5px 0 0 #000;
+          box-shadow: 5px 5px 0 0 #000;
+  color: #000;
+  cursor: pointer;
+}
+
+.main .right .btn.inversion {
+  background-color: #000;
+  -webkit-box-shadow: 5px 5px 0 0 #00f6be;
+          box-shadow: 5px 5px 0 0 #00f6be;
+  color: #00f6be;
 }
 /*# sourceMappingURL=styles.css.map */
