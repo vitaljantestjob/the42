@@ -1,7 +1,7 @@
 $bgc : white;
-$border: #eae9e9;
+$border_color: #eae9e9;
 $border_width: 2px;
-$border_more_img_hover: #00f6be;
+$button_color: #00f6be;
 $border_active_img: #937cff;
 * {
   margin: 0;
@@ -12,6 +12,7 @@ $border_active_img: #937cff;
   * {
     display: flex;
   }
+  font-family: sans-serif;
   width: 75%;
   height: 450px;
   margin: auto;
@@ -19,31 +20,59 @@ $border_active_img: #937cff;
   display: flex;
   .left {
     width: 60%;
+    min-width: 30rem;
+    flex-direction: column;
+    justify-content: space-between;
+    // *{border: 1px solid red;}
     img {
       width: 100%;
-      height: auto;
+      object-fit: contain;
     }
-    .main-img {
-      height: 80%;
-      width: 70%;
-      margin-left: 5px;
-      border: $border_width solid $border;
-    }
-    .more-img {
-      width: 30%;
-      height: 80%;
-      flex-direction: column;
-      justify-content: space-between;
-      .more-img-item {
-        width: 100%;
-        height: 30% ;
-        border: $border_width solid $border;
-        &:hover {
-          border-color: $border_more_img_hover;
-          cursor: pointer;
+    .pictures {
+      height: 75%;
+      .main-img {
+        width: 70%;
+        margin-left: 5px;
+        border: $border_width solid $border_color;
+      }
+      .more-img {
+        width: 30%;
+        flex-direction: column;
+        justify-content: space-between;
+        .more-img-item {
+          width: 100%;
+          height: 30% ;
+          border: $border_width solid $border_color;
+          &:hover {
+            border-color: $button_color;
+            cursor: pointer;
+          }
+          &.active {
+            border-color: $border_active_img;
+          }
         }
-        &.active {
-          border-color: $border_active_img;
+      }
+    }
+    .props {
+      width: 100%;
+      height: 20%;
+      .props-item {
+        width: 6rem;
+        height: 6rem;
+        min-width: 6rem;
+        margin-right: 1.5rem;
+        padding: 10px 5px;
+        background-color: $button_color;
+        overflow: hidden;
+        display: block;
+        font-size: 0.7rem;
+        text-align: center;
+        h2 {
+          display: block;
+          font-size: 0.8rem;
+          text-transform: uppercase;
+          text-align: center;
+          width: 100%;
         }
       }
     }
