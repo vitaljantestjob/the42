@@ -1,0 +1,70 @@
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.product {
+  width: 75%;
+  height: 450px;
+  margin: auto;
+  background-color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.product * {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.product .left {
+  width: 60%;
+}
+
+.product .left img {
+  width: 100%;
+  height: auto;
+}
+
+.product .left .main-img {
+  height: 80%;
+  width: 70%;
+  margin-left: 5px;
+  border: 2px solid #eae9e9;
+}
+
+.product .left .more-img {
+  width: 30%;
+  height: 80%;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.product .left .more-img .more-img-item {
+  width: 100%;
+  height: 30%;
+  border: 2px solid #eae9e9;
+}
+
+.product .left .more-img .more-img-item:hover {
+  border-color: #00f6be;
+  cursor: pointer;
+}
+
+.product .left .more-img .more-img-item.active {
+  border-color: #937cff;
+}
+
+.product .right {
+  width: 40%;
+}
+/*# sourceMappingURL=styles.css.map */
