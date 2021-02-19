@@ -17,12 +17,9 @@
     <div class="left">
       <div class="pictures">
         <div class="more-img">
-          <div class="more-img-item active"><img src="assets/img/blue1.png" alt=""></div>
-          <div class="more-img-item"><img src="assets/img/blue2.png" alt=""></div>
-          <div class="more-img-item"><img src="assets/img/blue3.png" alt=""></div>
         </div>
         <div class="main-img">
-          <img src="assets/img/blue1.png" alt="">
+          <!-- <img src="assets/img/blue1.png" alt=""> -->
         </div>
       </div>
       <div class="props">
@@ -66,4 +63,52 @@
     </div>
   </div>
 </body>
+<script>
+  let products = [
+    {name: 'POLYCARBONATE', colors: [
+      {color: 'brown', price: 30},{color: 'blue', price: 30, sale: true},{color: 'green', price: 30}
+    ]},
+    {name: 'POLYCARBONATE POLARIZED', colors: [
+      {color: 'brown', price: 30, oldprice: 50},{color: 'blue', price: 30, sale: true},{color: 'green', price: 30}
+    ]},
+    {name: 'TRIVEX&reg; PERFORMANCE', colors: [
+      {color: 'brown', price: 75},{color: 'blue', price: 75, sale: true},{color: 'green', price: 75}
+    ]}
+  ];
+
+  let currentColor = 'brown';
+  let currentView = 1;
+
+  
+  const showLeft = ()=>{ // left block rendering
+    document.querySelector('.main-img').innerHTML = `<img src="assets/img/${currentColor}${currentView}.png" alt="">`;
+    if (!document.querySelector('.more-img-item')) {
+      console.log('document.querySelector(')
+      for (let i = 1; i <= 3; i++) {
+        active = i == currentView ? 'active' : '';
+        document.querySelector('.more-img').innerHTML += `<div class="more-img-item ${active}" data-view="${i}"><img src="assets/img/${currentColor}${i}.png" alt=""></div>`;
+      }
+    } else {
+      let n = 1;
+      document.querySelectorAll('.more-img-item').forEach((item)=>{
+        item.setAttribute('src',`assets/img/${currentColor}${currentView}.png`);
+        active = n == currentView ? 'active' : '';
+        n++;
+        if (active) {item.classList.add('active')} else {item.classList.remove('active')};
+      })
+    }
+  }
+  
+  showLeft();
+  let moreImg = document.querySelectorAll('.more-img-item');
+
+  const moreImgHandler = (event)=>{
+    let viewID = event.currentTarget.dataset.view;
+    if (!viewID) return;
+    currentView = viewID;
+    showLeft();
+  }
+
+  moreImg.forEach((item)=>{item.addEventListener('click', moreImgHandler)});
+</script>
 </html>
