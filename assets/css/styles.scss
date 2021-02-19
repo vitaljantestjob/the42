@@ -93,81 +93,89 @@ $border_active_img: #937cff;
     flex-direction: column;
     align-items: space-between;
     justify-content: space-between;
-    .variation {
-      height: 15%;
+    .products-list {
+      height: 75%;
       flex-direction: column;
-      .product {
-        width: 100%;
-        justify-content: space-between;
-        border-bottom: 2px solid black;
-        span {
-          display: inline-block;
+      align-items: space-between;
+      justify-content: space-between;
+      .products-list-item {
+        height: 25%;
+        flex-direction: column;
+        .product {
+          width: 100%;
+          justify-content: space-between;
+          border-bottom: 2px solid black;
+          span {
+            display: inline-block;
+          }
+          .price {
+            span{
+              margin: 0 5px;
+              &:before {
+                content: "$";
+              }
+              &.newprice {
+                color: #f00;
+              }
+              &.oldprice {
+                text-decoration-line: line-through;
+                text-decoration-color: #f00;
+              }
+            }
+          }
         }
-        .price {
-          span{
-            margin: 0 5px;
-            &:before {
-              content: "$";
+        .images {
+          height: 50%;
+          .color-img {
+            width: 14%;
+            height: 100%;
+            border: 2px solid $border_color;
+            margin-right: 5px;
+            overflow: hidden;
+            background-size: cover;
+            background-repeat: no-repeat;
+            cursor: pointer;
+            &:hover {
+              border: 2px solid $button_color;
             }
-            &.newprice {
-              color: #f00;
+            &.active {
+              border: 2px solid $border_active_img;
             }
-            &.oldprice {
-              text-decoration-line: line-through;
-              text-decoration-color: #f00;
+            &.blue {
+              background-image: url(../img/blue0.png);
             }
-          }
-        }
-      }
-      .images {
-        height: 50%;
-        .color-img {
-          width: 14%;
-          height: 100%;
-          border: 2px solid $border_color;
-          margin-right: 5px;
-          overflow: hidden;
-          background-size: cover;
-          background-repeat: no-repeat;
-          cursor: pointer;
-          &:hover {
-            border: 2px solid $button_color;
-          }
-          &.active {
-            border: 2px solid $border_active_img;
-          }
-          &.blue {
-            background-image: url(../img/blue0.png);
-          }
-          &.green {
-            background-image: url(../img/green0.png);
-          }
-          &.brown {
-            background-image: url(../img/brown0.png);
-          }
-          &.sale {
-            position: relative;
-            &:before {
-              display: inline-block;
-              content: 'SALE';
-              background-color: #f00;
-              color: #fff;
-              padding: 2px;
-              height: .5rem;
-              font-size: .4rem;
-              position: absolute;
-              top: 0;
-              right: 0;
+            &.green {
+              background-image: url(../img/green0.png);
+            }
+            &.brown {
+              background-image: url(../img/brown0.png);
+            }
+            &.sale {
+              position: relative;
+              &:before {
+                display: inline-block;
+                content: 'SALE';
+                background-color: #f00;
+                color: #fff;
+                padding: 2px;
+                height: .5rem;
+                font-size: .4rem;
+                position: absolute;
+                top: 0;
+                right: 0;
+              }
             }
           }
         }
       }
     }
+
     .btn {
-      height: 15%;
+      height: 10%;
       font-size: 0.9rem;
       justify-content: center;
       align-items: center;
+      margin-bottom: 10px;
       background-color: $button_color;
       box-shadow: 5px 5px 0 0 $button_shade;
       color: $button_shade;
