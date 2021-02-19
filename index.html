@@ -1,15 +1,14 @@
 <!DOCTYPE html>
-<html lang="uk">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0, user-scalable=no">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="cache-control" content="no-cache">
-<meta name="description" content="">
+<meta name="description" content="Test job by Vitalii Kolomiiets (vitaljan@gmail.com)">
 <meta name="author" content="Vitalii Kolomiiets, Kyiv, Ukraine, vitaljan@gmail.com">
-<title></title>
-<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+<title>Test job by Vitalii Kolomiiets (vitaljan@gmail.com)</title>
 <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
@@ -19,13 +18,12 @@
         <div class="more-img">
         </div>
         <div class="main-img">
-          <!-- <img src="assets/img/blue1.png" alt=""> -->
         </div>
       </div>
       <div class="props">
         <div class="props-item">
           <h2>includes</h2>
-          Hard case protective case with zipper
+          <span>Hard case protective case with zipper</span>
         </div>
         <div class="props-item">
             <h2>30-day</h2>
@@ -49,17 +47,18 @@
       <div class="btn inversion"><span>build your prescription</span></div>
     </div>
   </div>
+  <footer>Test job by Vitalii Kolomiiets (vitaljan@gmail.com)    <a href="http://explorer.org.ua/cv" target="blanc"> View CV </a></footer>
 </body>
 <script>
-  let products = [
+  let products = [ // source data array
     {name: 'POLYCARBONATE', id: 101, colors: [
-      {color: 'brown', price: 30},{color: 'blue', price: 30, sale: true},{color: 'green', price: 30}
+      {color: 'brown', price: 30},{color: 'blue', price: 50},{color: 'green', price: 45}
     ]},
     {name: 'POLYCARBONATE POLARIZED', id: 102, colors: [
-      {color: 'brown', price: 30, oldprice: 50},{color: 'blue', price: 30},{color: 'green', price: 30}
+      {color: 'brown', price: 30, oldprice: 50},{color: 'blue', price: 30},{color: 'green', price: 25}
     ]},
     {name: 'TRIVEX&reg; PERFORMANCE', id: 103, colors: [
-      {color: 'brown', price: 75},{color: 'blue', price: 75},{color: 'green', price: 75}
+      {color: 'brown', price: 75},{color: 'blue', price: 75, oldprice: 80},{color: 'green', price: 75}
     ]}
   ];
 
@@ -70,12 +69,12 @@
   
   const showLeft = ()=>{ // left block rendering
     document.querySelector('.main-img').innerHTML = `<img src="assets/img/${currentColor}${currentView}.png" alt="">`;
-    if (!document.querySelector('.more-img-item')) {
+    if (!document.querySelector('.more-img-item')) { // primary page load
       for (let i = 1; i <= 3; i++) {
         active = i == currentView ? 'active' : '';
         document.querySelector('.more-img').innerHTML += `<div class="more-img-item ${active}" data-view="${i}"><img src="assets/img/${currentColor}${i}.png" alt=""></div>`;
       }
-    } else {
+    } else { // page render when user change made
       let n = 1;
       document.querySelectorAll('.more-img-item').forEach((item)=>{
         item.querySelector('img').setAttribute('src',`assets/img/${currentColor}${n}.png`);
@@ -86,7 +85,7 @@
     }
   }
   
-  const getPrice = (arr)=>{
+  const getPrice = (arr)=>{ // get data from data array
     let res;
     arr.forEach ((i)=>{
       if (i.color == currentColor) {
@@ -98,7 +97,7 @@
   }
   const showRight = ()=>{ // right block rendering
     let el = document.querySelector('.products-list');
-    if (!document.querySelector('.products-list-item')) {
+    if (!document.querySelector('.products-list-item')) { // primary page load
       products.forEach ((i)=>{
         let productID = i.id;
         let prices = getPrice(i.colors);
@@ -107,7 +106,7 @@
 
         let colorsHTML = '';
         i.colors.forEach((i)=>{
-          let sale = i.sale ? 'sale' : '';
+          let sale = i.oldprice ? 'sale' : '';
           colorsHTML += `<div class="color-img ${i.color} ${sale}" data-color=${i.color} data-id=${productID}></div>`;
         })
         el.innerHTML += `
@@ -124,7 +123,7 @@
         </div>
         `;
       })
-    } else {
+    } else { // page render when user change made
       let elemList = document.querySelectorAll('.products-list-item');
       let index = 0;
       elemList.forEach((i)=>{
@@ -145,28 +144,26 @@
   let moreImg = document.querySelectorAll('.more-img-item');
   showRight();
 
-  const moreImgHandler = (event)=>{
+  const moreImgHandler = (event)=>{ // left bar click handler
     let viewID = event.currentTarget.dataset.view;
     if (!viewID) return;
     currentView = viewID;
     showLeft();
   }
-  const colorHandler = (event)=>{
+  const colorHandler = (event)=>{ // right bar click handler
     let id = event.target.dataset.id;
     let newColor = event.target.dataset.color;
     currentProduct = id;
     console.log('Product ID:', id, " color: ", newColor)
-    if (currentColor != newColor) {
-      currentColor = newColor;
+    currentColor = newColor;
       showLeft();
       showRight();
-    }
   }
 
   moreImg.forEach((item)=>{item.addEventListener('click', moreImgHandler)});
   document.querySelectorAll('.color-img').forEach((i)=>i.addEventListener('click', colorHandler));
 
-  document.querySelector('#submit').addEventListener('click', ()=>{
+  document.querySelector('#submit').addEventListener('click', ()=>{ // http request
     if (currentProduct && currentColor) {
       console.log('Request: ',currentProduct, currentColor);
       let data = new FormData;
@@ -182,10 +179,10 @@
         return response.json(); 
       })
       .then(function(json) {
-        console.log('Server responsed:', json)
+        console.log('Server responsed:', json);
       })
       .catch(function(error) {
-        alert('catch: buy.php error!' + error)
+        alert('catch: buy.php error!' + error);
       });
 
     } else alert('You have not selected an item');

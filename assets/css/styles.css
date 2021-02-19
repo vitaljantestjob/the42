@@ -12,6 +12,12 @@
   font-style: normal;
 }
 
+body {
+  height: 100%;
+  min-width: 800px;
+  padding-top: 150px;
+}
+
 .main {
   font-family: oswaldregular;
   width: 75%;
@@ -27,6 +33,18 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+}
+
+@media (max-width: 1100px) {
+  .main {
+    width: 90%;
+  }
+}
+
+@media (max-width: 850px) {
+  .main {
+    width: 95%;
+  }
 }
 
 .main .left {
@@ -85,20 +103,33 @@
 
 .main .left .props {
   width: 100%;
-  height: 20%;
+  height: 24%;
 }
 
 .main .left .props .props-item {
-  width: 6rem;
-  height: 6rem;
+  width: 7rem;
+  height: 7rem;
   min-width: 6rem;
   margin-right: 1.5rem;
-  padding: 10px 5px;
+  padding: 8px 5px;
   background-color: #00f6be;
   overflow: hidden;
   display: block;
-  font-size: 0.7rem;
+  font-size: 0.8rem;
   text-align: center;
+}
+
+@media (max-width: 1100px) {
+  .main .left .props .props-item {
+    width: 6rem;
+    height: 6rem;
+  }
+}
+
+@media (max-width: 1100px) {
+  .main .left .props .props-item {
+    font-size: 0.7rem;
+  }
 }
 
 .main .left .props .props-item h2 {
@@ -111,6 +142,7 @@
 
 .main .right {
   width: 40%;
+  height: 100%;
   margin-left: 10px;
   text-transform: uppercase;
   font-weight: bold;
@@ -135,9 +167,8 @@
   -webkit-box-align: space-between;
       -ms-flex-align: space-between;
           align-items: space-between;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
 }
 
 .main .right .products-list .products-list-item {
@@ -194,6 +225,18 @@
   cursor: pointer;
 }
 
+@media (max-width: 1100px) {
+  .main .right .products-list .products-list-item .images .color-img {
+    width: 16%;
+  }
+}
+
+@media (max-width: 900px) {
+  .main .right .products-list .products-list-item .images .color-img {
+    width: 18%;
+  }
+}
+
 .main .right .products-list .products-list-item .images .color-img:hover {
   border: 2px solid #00f6be;
 }
@@ -232,7 +275,7 @@
 }
 
 .main .right .btn {
-  height: 10%;
+  height: 14%;
   font-size: 0.9rem;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
@@ -248,10 +291,25 @@
   cursor: pointer;
 }
 
+@media (max-width: 1100px) {
+  .main .right .btn {
+    height: 10%;
+  }
+}
+
 .main .right .btn.inversion {
   background-color: #000;
   -webkit-box-shadow: 5px 5px 0 0 #00f6be;
           box-shadow: 5px 5px 0 0 #00f6be;
   color: #00f6be;
+}
+
+footer {
+  width: 100%;
+  padding: 5px;
+  text-align: center;
+  background-color: gray;
+  position: fixed;
+  bottom: 0;
 }
 /*# sourceMappingURL=styles.css.map */
