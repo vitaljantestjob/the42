@@ -45,7 +45,7 @@
       <h2>wrap around</h2>
       <div class="products-list">
       </div>
-      <div class="btn"><span>add to cart</span></div>
+      <div class="btn" id="submit"><span>add to cart</span></div>
       <div class="btn inversion"><span>build your prescription</span></div>
     </div>
   </div>
@@ -65,6 +65,7 @@
 
   let currentColor = 'brown';
   let currentView = 1;
+  let currentProduct;
 
   
   const showLeft = ()=>{ // left block rendering
@@ -75,7 +76,6 @@
         document.querySelector('.more-img').innerHTML += `<div class="more-img-item ${active}" data-view="${i}"><img src="assets/img/${currentColor}${i}.png" alt=""></div>`;
       }
     } else {
-      console.log('render')
       let n = 1;
       document.querySelectorAll('.more-img-item').forEach((item)=>{
         item.querySelector('img').setAttribute('src',`assets/img/${currentColor}${n}.png`);
@@ -132,6 +132,10 @@
         let price = `<span class="curprice">${prices.price}</span>`;
         if (prices.oldprice) price = `<span class="oldprice">${prices.oldprice}</span><span class="newprice">${prices.price}</span>`;
         i.querySelector('.product .price').innerHTML = price;
+        i.querySelectorAll('.color-img').forEach((el)=>{
+          if (el.dataset.id == currentProduct && el.dataset.color == currentColor) {
+            el.classList.add('active')} else el.classList.remove('active');
+        })
         index++;
       })
     }
@@ -150,6 +154,7 @@
   const colorHandler = (event)=>{
     let id = event.target.dataset.id;
     let newColor = event.target.dataset.color;
+    currentProduct = id;
     console.log('Product ID:', id, " color: ", newColor)
     if (currentColor != newColor) {
       currentColor = newColor;
@@ -160,6 +165,31 @@
 
   moreImg.forEach((item)=>{item.addEventListener('click', moreImgHandler)});
   document.querySelectorAll('.color-img').forEach((i)=>i.addEventListener('click', colorHandler));
+
+  document.querySelector('#submit').addEventListener('click', ()=>{
+    if (currentProduct && currentColor) {
+      console.log('Request: ',currentProduct, currentColor);
+      let data = new FormData;
+      data.append('id', currentProduct);
+      data.append('color', currentColor);
+      fetch('buy.php', {
+        method: "POST",
+        body: data
+      }) 
+      .then(function(response){
+        if (response.status == 200) {}// удачный ajax запрос
+        else {alert('Fetch error!')}// неудачный ajax запрос
+        return response.json(); 
+      })
+      .then(function(json) {
+        console.log('Server responsed:', json)
+      })
+      .catch(function(error) {
+        alert('catch: buy.php error!' + error)
+      });
+
+    } else alert('You have not selected an item');
+  })
 
 </script>
 </html>
